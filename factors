@@ -6,29 +6,25 @@
 from sys import argv
 
 
-def factorize(n):
+def factorize():
     """factorize the given number into a product of two smaller numbers."""
-    divisor = 2
-    if n < 2:
-        return
-    while divisor <= n:
-        if n % divisor == 0:
-            print("{}={}*{}".format(n, n//divisor, divisor))
-            break
-        else:
-            divisor += 1
-
-
-def open_file_from_arg():
-    """open the file passed as a command line argument"""
-    if len(argv) != 2:
-        exit()
     try:
-        with open(argv[1]) as f:
+        file_input = argv[1]
+        with open(file_input) as f:
             for line in f:
-                factorize(int(line))
+                number = int(line)
+                if number % 2 == 0:
+                    print("{}={}*{}".format(number, number//2, 2))
+                i = 3
+                while i < number//2:
+                    if number % i == 0:
+                        print("{}={}*{}".format(number, number//i, i))
+                        break
+                    i += 2
+                if i == (number//2) + 1:
+                    print("{}={}*{}".format(number, number, 1))
     except (OSError, IndexError):
         pass
 
 
-open_file_from_arg()
+factorize()
