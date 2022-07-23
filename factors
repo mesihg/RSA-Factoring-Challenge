@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """This module factorizes as many numbers as possible
-into a product of two smaller numbers."""
+   into a product of two smaller numbers."""
 
 from sys import argv
 
@@ -9,6 +9,8 @@ from sys import argv
 def factorize(n):
     """factorize the given number into a product of two smaller numbers."""
     divisor = 2
+    if n < 2:
+        return
     while divisor <= n:
         if n % divisor == 0:
             print("{}={}*{}".format(n, n//divisor, divisor))
@@ -21,9 +23,12 @@ def open_file_from_arg():
     """open the file passed as a command line argument"""
     if len(argv) != 2:
         exit()
-    with open(argv[1], 'r') as f:
-        for line in f.readlines():
-            factorize(int(line))
+    try:
+        with open(argv[1], 'r') as f:
+            for line in f.readlines():
+                factorize(int(line))
+    except OSError:
+        pass
 
 
 open_file_from_arg()
