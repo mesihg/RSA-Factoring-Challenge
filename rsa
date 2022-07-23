@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+
+"""This module factorizes as many numbers as possible
+   into a product of two smaller numbers."""
+
+from sys import argv
+
+
+def read_file(filename):
+    """Read number from a file and turn it into a list of numbers."""
+    with open(filename, encoding="utf-8") as file:
+        lines = file.readlines()
+    number_list = []
+    for line in lines:
+        number_list.append(int(line))
+    return number_list
+
+
+def factorize():
+    """factorize the given number into a product of two smaller numbers."""
+    for i in range(1, len(argv)):
+        ls = read_file(argv[i])
+        for n in ls:
+            for i in range(2, n):
+                if n == ((n // i) * i):
+                    print("{}={}*{}".format(n, (n // i), i))
+                    break
+
+
+factorize()
