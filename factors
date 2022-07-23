@@ -8,23 +8,18 @@ from sys import argv
 
 def factorize():
     """factorize the given number into a product of two smaller numbers."""
-    try:
-        file_input = argv[1]
-        with open(file_input) as f:
-            for line in f:
-                number = int(line)
-                if number % 2 == 0:
-                    print("{}={}*{}".format(number, number//2, 2))
-                i = 3
-                while i < number//2:
-                    if number % i == 0:
-                        print("{}={}*{}".format(number, number//i, i))
-                        break
-                    i += 2
-                if i == (number//2) + 1:
-                    print("{}={}*{}".format(number, number, 1))
-    except (OSError, IndexError):
-        pass
+    if len(argv) == 2:
+        try:
+            file_input = argv[1]
+            with open(file_input) as f:
+                for line in f.readlines():
+                    number = int(line)
+                    for i in range(2, number):
+                        if number == ((number//i)*i):
+                            print("{}={}*{}".format(number, number//i, i))
+                            break
+        except (OSError, IndexError) as err:
+            print(err)
 
 
 factorize()
