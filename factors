@@ -3,7 +3,7 @@
 """This module factorizes as many numbers as possible
 into a product of two smaller numbers."""
 
-import sys
+from sys import argv
 
 
 def factorize(n):
@@ -17,11 +17,13 @@ def factorize(n):
             divisor += 1
 
 
-def open_file(file):
+def open_file_from_arg():
     """open the file passed as a command line argument"""
-    with open(file, 'r') as f:
+    if len(argv) != 2:
+        exit()
+    with open(argv[1], 'r') as f:
         for line in f.readlines():
             factorize(int(line))
 
 
-open_file(sys.argv[1])
+open_file_from_arg()
