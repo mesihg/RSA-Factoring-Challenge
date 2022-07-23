@@ -6,9 +6,9 @@
 from sys import argv
 
 
-def factorize():
+def factorize(file_name):
     """factorize the given number into a product of two smaller numbers."""
-    with open(argv[1], encoding="utf-8") as file:
+    with open(file_name) as file:
         for val in file.readlines():
             number = int(val)
             for i in range(2, number):
@@ -17,5 +17,5 @@ def factorize():
                     break
 
 
-if len(argv) == 2:
-    factorize()
+for i in range(1, len(argv)):
+    factorize(argv[i])
