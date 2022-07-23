@@ -25,7 +25,7 @@ def open_file_from_arg():
         exit()
     try:
         with open(argv[1]) as f:
-            for line in f.readlines():
+            for line in f:
                 factorize(int(line))
     except (OSError, IndexError):
         pass
